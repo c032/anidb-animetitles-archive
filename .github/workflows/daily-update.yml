@@ -1,0 +1,33 @@
+name: daily-update
+
+on:
+  schedule:
+    - cron: '38 4 * * *'
+
+jobs:
+  daily-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+      - name: 'Download'
+        env:
+          CURL_USER_AGENT: ${{ secrets.CURL_USER_AGENT }}
+        run: |
+          mkdir -p "$(date +%Y)/$(date +%m)"
+          curl -vkL -H 'User-Agent: ${CURL_USER_AGENT}' 'http://anidb.net/api/anime-titles.xml.gz' > "$(date +%Y)/$(date +%m)/$(date +%s).xml.gz"
+      - name: 'Update `latest.xml.gz`'
+        run: |
+          export MOST_RECENT_FILE=$(find . -iname '*.xml.gz' -print | egrep '/[0-9]+\.xml\.gz$' | sort | tail -1)
+          rm -f 'latest.xml.gz' 'latest.xml'
+          ln -v -s "${MOST_RECENT_FILE}" 'latest.xml.gz'
+          gunzip < 'latest.xml.gz' > 'latest.xml'
+      - name: '`git config`'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "<>"
+      - name: 'Commit and push'
+        run: |
+          git add --all -v
+          git commit -m 'Daily update'
+          git push origin main
