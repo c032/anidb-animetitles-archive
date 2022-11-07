@@ -24,6 +24,7 @@ jobs:
 
       - name: 'Create `latest.db`'
         run: |
+          rm 'latest.db'
           python3 'scripts/create-sqlite3.py'
 
       - name: 'Remove `latest.xml`'
