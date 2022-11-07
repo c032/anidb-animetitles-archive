@@ -1,0 +1,42 @@
+name: 'sqlite3'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'latest.xml'
+
+jobs:
+  update-sqlite3-database:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v3'
+        with:
+          ref: 'sqlite3'
+
+      - name: 'Get `latest.xml` from `main`'
+        run: |
+          git fetch origin main
+          git checkout origin/main -- 'latest.xml'
+
+      - name: 'Create `latest.db`'
+        run: |
+          python3 'scripts/create-sqlite3.py'
+
+      - name: 'Remove `latest.xml`'
+        run: |
+          rm 'latest.xml'
+
+      - name: '`git config`'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "<>"
+
+      - name: 'Commit and push'
+        run: |
+          git add --all -v
+          git commit -m 'Update'
+          git push origin sqlite3
