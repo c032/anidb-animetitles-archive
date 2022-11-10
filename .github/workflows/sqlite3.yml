@@ -7,6 +7,8 @@ on:
       - 'main'
     paths:
       - 'latest.xml'
+  schedule:
+    - cron: '6 5 * * *'
 
 jobs:
   update-sqlite3-database:
