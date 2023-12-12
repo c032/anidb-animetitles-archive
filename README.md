@@ -1,5 +1,21 @@
 # anidb-animetitles-archive
 
+---
+
+> **NOTE:**
+>
+> This repository is getting quite large, and already surpasses 1GB on
+> GitHub.
+>
+> Before I get a warning from GitHub, I'll have to either look for an
+> alternative host, or remove old files and commits to reduce repository
+> size.
+>
+> Tentatively, I might create a torrent file for each year, and have
+> only current year information in the repository.
+
+---
+
 Daily updates of AniDB anime titles dumps.
 
 The `latest.xml.gz` symlink points to the most recently download file,
