@@ -10,7 +10,7 @@ jobs:
     environment: anidb
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v2'
+        uses: 'actions/checkout@v4'
       - name: 'Download'
         env:
           CURL_USER_AGENT: ${{ secrets.CURL_USER_AGENT }}
