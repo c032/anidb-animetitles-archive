@@ -13,6 +13,12 @@ or `git repack` runs, at least).
 I might trim the history of this repository if it gets too large, so you
 should assume a force-push will happen eventually.
 
+## Files
+
+| Path | Description |
+|---|---|
+| [`data/animetitles.json`](https://raw.githubusercontent.com/c032/anidb-animetitles-archive/main/data/animetitles.json) | Newline-delimited JSON. Each line contains one anime with all its titles. |
+
 ## Source
 
 <https://wiki.anidb.net/API>
