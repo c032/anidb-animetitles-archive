@@ -1,0 +1,13 @@
+name: "push"
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "**"
+      - "!data/**"
+
+jobs:
+  check:
+    if: "github.ref == 'refs/heads/main'"
+    uses: "./.github/workflows/check.yml"
