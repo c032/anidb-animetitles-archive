@@ -30,6 +30,7 @@ jobs:
             curl \
               --verbose \
               --fail --fail-early \
+              --compressed \
               'https://ddl.c032.dev/anidb/animetitles.json'
           ) > 'data/animetitles.json'
 
