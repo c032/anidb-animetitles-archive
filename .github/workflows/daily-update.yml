@@ -7,7 +7,6 @@ on:
 jobs:
   daily-update:
     runs-on: "ubuntu-latest"
-    environment: "anidb"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v4"
