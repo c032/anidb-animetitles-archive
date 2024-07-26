@@ -22,7 +22,7 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: "Download `animetitles.json`"
+      - name: "Download `animetitles.json.lz4`"
         run: |
           mkdir -p 'data'
 
@@ -35,11 +35,15 @@ jobs:
           # Ensure your HTTP client respects `ETag` or `Cache-Control` headers.
           (
             curl \
-              --verbose \
+              --silent --show-error \
               --fail --fail-early \
-              --compressed \
-              'https://ddl.c032.dev/anidb/animetitles.json'
-          ) > 'data/animetitles.json'
+              'https://ddl.c032.dev/anidb/animetitles.json.lz4'
+          ) > 'data/animetitles.json.lz4'
+
+      - name: "Decompress `animetitles.json.lz4`"
+        run: |
+          rm -f 'data/animetitles.json'
+          lz4 -d --rm 'data/animetitles.json.lz4' 'data/animetitles.json'
 
       - name: "Sanity check"
         run: |
@@ -52,6 +56,10 @@ jobs:
 
       - name: 'Commit and push'
         run: |
-          git add --all -v 'data"
+          git add --all -v 'data'
+
+          # Abort if there's nothing to commit.
+          git diff --cached --quiet && exit 0
+
           git commit -m 'Daily update'
-          git push origin main
+          git push 'origin' 'main'
