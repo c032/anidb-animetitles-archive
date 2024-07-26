@@ -44,6 +44,6 @@ jobs:
 
       - name: 'Commit and push'
         run: |
-          git add --all -v
+          git add --all -v 'data"
           git commit -m 'Daily update'
           git push origin main
