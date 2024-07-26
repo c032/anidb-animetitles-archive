@@ -26,6 +26,13 @@ jobs:
         run: |
           mkdir -p 'data'
 
+          # Feel free to use this URL directly, but I don't guarantee any kind
+          # of availability.
+          #
+          # Also, this file only changes once a day, so don't go crazy with the
+          # requests.
+          #
+          # Ensure your HTTP client respects `ETag` or `Cache-Control` headers.
           (
             curl \
               --verbose \
