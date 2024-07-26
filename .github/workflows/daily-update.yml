@@ -53,7 +53,7 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "<>"
 
-      - name: 'Commit and push'
+      - name: "Commit and push"
         run: |
           git add --all -v 'data'
 
