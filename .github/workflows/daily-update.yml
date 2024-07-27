@@ -31,7 +31,9 @@ jobs:
           # Also, this file only changes once a day, so don't go crazy with the
           # requests.
           #
-          # Ensure your HTTP client respects `ETag` or `Cache-Control` headers.
+          # Ensure your HTTP client is able to use the `Cache-Control`, `ETag`,
+          # or `Last-Modified` headers from the HTTP response to avoid wasting
+          # unnecessary bandwidth.
           (
             curl \
               --silent --show-error \
