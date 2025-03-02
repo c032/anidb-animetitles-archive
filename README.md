@@ -1,5 +1,12 @@
 # anidb-animetitles-archive
 
+> [!NOTE]
+>
+> Automatic updates temporarily paused.
+>
+> I'm changing things in the backend. I'll resume the automatic updates
+> after everything is stable on my side.
+
 Daily updates of AniDB anime titles dumps.
 
 For flexibility, I'm downloading their daily titles dump to a VPS,
